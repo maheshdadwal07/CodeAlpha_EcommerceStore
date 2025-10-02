@@ -23,11 +23,11 @@ This project provides basic online shopping features including product listings,
 📂 Folder Structure
 
 CodeAlpha_EcommerceStore/
+
 │── server.js         # Entry point of the app  
 │── package.json      # Dependencies & scripts  
 │── .env              # Environment variables  
 │── README.md         # Project documentation  
-
 ├── public/           # Static frontend files (HTML, CSS, JS)  
 ├── routes/           # Express routes (auth, products, cart, orders)  
 ├── models/           # Mongoose models (User, Product, Order)  
