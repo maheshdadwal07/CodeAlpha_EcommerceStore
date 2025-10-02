@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CodeAlpha E-commerce Store - Your one-stop shop for quality products"
+    />
+    <meta
+      name="keywords"
+      content="ecommerce, shopping, online store, products"
+    />
+    <meta name="author" content="Mahesh Dadwal" />
+
+    <title>CodeAlpha E-commerce Store</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <!-- Logo -->
+          <div class="nav-logo">
+            <a href="/">
+              <i class="fas fa-shopping-bag"></i>
+              <span>CodeAlpha Store</span>
+            </a>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="nav-search">
+            <form class="search-form" id="search-form">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search products..."
+                autocomplete="off"
+              />
+              <button type="submit" class="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <div id="search-suggestions" class="search-suggestions"></div>
+          </div>
+
+          <!-- Navigation Links -->
+          <div class="nav-links">
+            <a href="/" class="nav-link active">
+              <i class="fas fa-home"></i>
+              <span>Home</span>
+            </a>
+            <a href="/products" class="nav-link">
+              <i class="fas fa-th-large"></i>
+              <span>Products</span>
+            </a>
+            <a href="/cart" class="nav-link cart-link">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Cart</span>
+              <span id="cart-count" class="cart-count">0</span>
+            </a>
+
+            <!-- User Menu -->
+            <div class="user-menu">
+              <div class="user-menu-toggle" id="user-menu-toggle">
+                <i class="fas fa-user"></i>
+                <span id="user-name">Account</span>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="user-dropdown" id="user-dropdown">
+                <!-- Logged out state -->
+                <div class="auth-links" id="auth-links">
+                  <a href="/login" class="dropdown-link">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                  </a>
+                  <a href="/register" class="dropdown-link">
+                    <i class="fas fa-user-plus"></i>
+                    Register
+                  </a>
+                </div>
+
+                <!-- Logged in state -->
+                <div class="user-links" id="user-links" style="display: none">
+                  <a href="/profile" class="dropdown-link">
+                    <i class="fas fa-user-cog"></i>
+                    Profile
+                  </a>
+                  <a href="/orders" class="dropdown-link">
+                    <i class="fas fa-box"></i>
+                    My Orders
+                  </a>
+                  <a href="/wishlist" class="dropdown-link">
+                    <i class="fas fa-heart"></i>
+                    Wishlist
+                  </a>
+                  <hr class="dropdown-divider" />
+                  <a href="#" class="dropdown-link" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Toggle -->
+          <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-content">
+          <a href="/" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <a href="/products" class="mobile-nav-link">
+            <i class="fas fa-th-large"></i>
+            Products
+          </a>
+          <a href="/cart" class="mobile-nav-link">
+            <i class="fas fa-shopping-cart"></i>
+            Cart (<span id="mobile-cart-count">0</span>)
+          </a>
+          <a href="/profile" class="mobile-nav-link">
+            <i class="fas fa-user"></i>
+            Profile
+          </a>
+          <a href="/orders" class="mobile-nav-link">
+            <i class="fas fa-box"></i>
+            Orders
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Welcome to CodeAlpha Store</h1>
+            <p>
+              Discover amazing products at unbeatable prices. Shop with
+              confidence and enjoy fast delivery.
+            </p>
+            <a href="/products" class="cta-button">
+              Shop Now
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="hero-image">
+            <img
+              src="/images/hero-shopping.svg"
+              alt="Shopping illustration"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="featured-products">
+        <div class="container">
+          <div class="section-header">
+            <h2>Featured Products</h2>
+            <p>Handpicked items just for you</p>
+          </div>
+          <div class="products-grid" id="featured-products">
+            <!-- Products will be loaded dynamically -->
+            <div class="product-skeleton">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-content">
+                <div class="skeleton-title"></div>
+                <div class="skeleton-price"></div>
+                <div class="skeleton-button"></div>
+              </div>
+            </div>
+            <!-- Repeat skeleton for loading state -->
+          </div>
+          <div class="section-footer">
+            <a href="/products" class="view-all-btn">
+              View All Products
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product Categories -->
+      <section class="categories">
+        <div class="container">
+          <div class="section-header">
+            <h2>Shop by Category</h2>
+            <p>Explore our wide range of categories</p>
+          </div>
+          <div class="categories-grid">
+            <div class="category-card" data-category="electronics">
+              <div class="category-icon">
+                <i class="fas fa-laptop"></i>
+              </div>
+              <h3>Electronics</h3>
+              <p>Latest gadgets and devices</p>
+            </div>
+            <div class="category-card" data-category="clothing">
+              <div class="category-icon">
+                <i class="fas fa-tshirt"></i>
+              </div>
+              <h3>Clothing</h3>
+              <p>Fashion for everyone</p>
+            </div>
+            <div class="category-card" data-category="books">
+              <div class="category-icon">
+                <i class="fas fa-book"></i>
+              </div>
+              <h3>Books</h3>
+              <p>Knowledge at your fingertips</p>
+            </div>
+            <div class="category-card" data-category="home-garden">
+              <div class="category-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <h3>Home & Garden</h3>
+              <p>Everything for your home</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="newsletter">
+        <div class="container">
+          <div class="newsletter-content">
+            <div class="newsletter-text">
+              <h2>Stay Updated</h2>
+              <p>
+                Subscribe to our newsletter for the latest deals and updates
+              </p>
+            </div>
+            <form class="newsletter-form" id="newsletter-form">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                id="newsletter-email"
+              />
+              <button type="submit">
+                Subscribe
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>CodeAlpha Store</h3>
+            <p>
+              Your trusted partner for online shopping. Quality products, great
+              prices, exceptional service.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" aria-label="YouTube"
+                ><i class="fab fa-youtube"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Customer Service</h4>
+            <ul>
+              <li><a href="/help">Help Center</a></li>
+              <li><a href="/shipping">Shipping Info</a></li>
+              <li><a href="/returns">Returns</a></li>
+              <li><a href="/track-order">Track Order</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Contact Info</h4>
+            <div class="contact-info">
+              <p><i class="fas fa-envelope"></i> support@codealpha-store.com</p>
+              <p><i class="fas fa-phone"></i> +91 12345 67890</p>
+              <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>&copy; 2025 CodeAlpha E-commerce Store. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
+              <a href="/cookies">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="modal-overlay">
+      <div class="modal-content" id="modal-content">
+        <!-- Modal content will be injected here -->
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/products.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
