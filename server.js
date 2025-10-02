@@ -17,7 +17,29 @@ const limiter = rateLimit({
 });
 
 // Middleware
-app.use(helmet()); // Security headers
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdnjs.cloudflare.com",
+          "https://fonts.googleapis.com",
+        ],
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com",
+          "https://cdnjs.cloudflare.com",
+        ],
+        scriptSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'"],
+      },
+    },
+  })
+); // Security headers with CSS support
 app.use(limiter); // Rate limiting
 app.use(cors()); // Enable CORS
 app.use(express.json({ limit: "10mb" })); // Parse JSON bodies
@@ -26,48 +48,65 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" })); // Parse URL-enc
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, "public")));
 
-// Session configuration
-app.use(
-  session({
-    secret:
-      process.env.SESSION_SECRET || "fallback-secret-change-in-production",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl:
-        process.env.MONGODB_URI || "mongodb://localhost:27017/ecommerce_store",
-    }),
-    cookie: {
-      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    },
-  })
-);
+// Session configuration (conditional MongoDB store)
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || "fallback-secret-change-in-production",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  },
+};
 
-// Database connection
-mongoose
-  .connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/ecommerce_store",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
+// Add MongoDB store only if database is available
+if (process.env.MONGODB_URI || process.env.NODE_ENV === "production") {
+  try {
+    sessionConfig.store = MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/ecommerce_store",
+    });
+  } catch (error) {
+    console.warn("⚠️  Using memory store for sessions (not recommended for production)");
+  }
+}
+
+app.use(session(sessionConfig));
+
+// Database connection with graceful handling
+const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      process.env.MONGODB_URI || "mongodb://localhost:27017/ecommerce_store",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     console.log("✅ Connected to MongoDB");
-  })
-  .catch((error) => {
-    console.error("❌ MongoDB connection error:", error);
-    process.exit(1);
-  });
+    return true;
+  } catch (error) {
+    console.warn("⚠️  MongoDB connection failed:", error.message);
+    console.log("🔄 Server will continue without database functionality");
+    console.log("💡 To enable database features:");
+    console.log("   1. Install MongoDB locally, or");
+    console.log("   2. Set MONGODB_URI environment variable to a cloud database");
+    return false;
+  }
+};
+
+// Initialize database connection
+let dbConnected = false;
+connectDB().then((connected) => {
+  dbConnected = connected;
+});
 
 // API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/products', require('./routes/products'));
-app.use('/api/cart', require('./routes/cart'));
-app.use('/api/orders', require('./routes/orders'));
-app.use('/api/wishlist', require('./routes/wishlist'));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/products", require("./routes/products"));
+app.use("/api/cart", require("./routes/cart"));
+app.use("/api/orders", require("./routes/orders"));
+app.use("/api/wishlist", require("./routes/wishlist"));
 
 // Basic route for testing
 app.get("/", (req, res) => {
