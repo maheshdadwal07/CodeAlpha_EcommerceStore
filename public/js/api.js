@@ -263,7 +263,7 @@ const AuthAPI = {
    */
   async getProfile() {
     try {
-      const response = await API.get("/auth/profile");
+      const response = await API.get("/auth/me");
       return response.data;
     } catch (error) {
       throw error;
@@ -291,7 +291,7 @@ const AuthAPI = {
    */
   async changePassword(passwordData) {
     try {
-      const response = await API.post("/auth/change-password", passwordData);
+      const response = await API.put("/auth/change-password", passwordData);
       return response.data;
     } catch (error) {
       throw error;
@@ -470,7 +470,7 @@ const CartAPI = {
    */
   async updateCartItem(productId, quantity) {
     try {
-      const response = await API.put("/cart/update", { productId, quantity });
+      const response = await API.put(`/cart/item/${productId}`, { quantity });
       return response.data;
     } catch (error) {
       throw error;
@@ -484,7 +484,7 @@ const CartAPI = {
    */
   async removeFromCart(productId) {
     try {
-      const response = await API.delete(`/cart/remove/${productId}`);
+      const response = await API.delete(`/cart/item/${productId}`);
       return response.data;
     } catch (error) {
       throw error;
@@ -607,7 +607,7 @@ const WishlistAPI = {
    */
   async addToWishlist(productId) {
     try {
-      const response = await API.post("/wishlist/add", { productId });
+      const response = await API.post(`/wishlist/add/${productId}`);
       return response.data;
     } catch (error) {
       throw error;

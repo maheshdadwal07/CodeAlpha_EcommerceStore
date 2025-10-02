@@ -62,11 +62,12 @@ mongoose
     process.exit(1);
   });
 
-// Routes will be added here
-// app.use('/api/auth', require('./routes/auth'));
-// app.use('/api/products', require('./routes/products'));
-// app.use('/api/cart', require('./routes/cart'));
-// app.use('/api/orders', require('./routes/orders'));
+// API Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/cart', require('./routes/cart'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/wishlist', require('./routes/wishlist'));
 
 // Basic route for testing
 app.get("/", (req, res) => {
