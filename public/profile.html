@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - CodeAlpha E-commerce Store</title>
+    <meta
+      name="description"
+      content="Manage your profile, orders, and preferences at CodeAlpha E-commerce Store."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/styles.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/">
+              <i class="fas fa-store"></i>
+              <span>CodeAlpha Store</span>
+            </a>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="nav">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/categories">Categories</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Search -->
+            <div class="search-container">
+              <form id="search-form" class="search-form">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search products..."
+                  autocomplete="off"
+                />
+                <button type="submit" class="search-btn">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+              <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <!-- Cart -->
+            <a href="/cart" class="cart-link">
+              <i class="fas fa-shopping-cart"></i>
+              <span id="cart-count" class="cart-count">0</span>
+            </a>
+
+            <!-- User Account -->
+            <div class="user-account">
+              <div class="user-menu" id="user-menu">
+                <button class="user-menu-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span id="user-name"></span>
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-dropdown">
+                  <a href="/profile" class="active"
+                    ><i class="fas fa-user"></i> Profile</a
+                  >
+                  <a href="/orders"><i class="fas fa-box"></i> Orders</a>
+                  <a href="/wishlist"><i class="fas fa-heart"></i> Wishlist</a>
+                  <button id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav id="mobile-nav" class="mobile-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/categories">Categories</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="mobile-user">
+            <a href="/profile" class="active">My Profile</a>
+            <a href="/orders">My Orders</a>
+            <a href="/wishlist">Wishlist</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+          <a href="/">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">My Profile</span>
+        </nav>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+          <div class="profile-container">
+            <!-- Profile Sidebar -->
+            <aside class="profile-sidebar">
+              <div class="profile-nav">
+                <div class="profile-header">
+                  <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                  </div>
+                  <div class="profile-info">
+                    <h3 id="profile-name">Loading...</h3>
+                    <p id="profile-email">Loading...</p>
+                  </div>
+                </div>
+
+                <ul class="profile-nav-list">
+                  <li>
+                    <button class="tab-button active" data-tab="profile-tab">
+                      <i class="fas fa-user"></i>
+                      <span>Profile Information</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="tab-button" data-tab="orders-tab">
+                      <i class="fas fa-box"></i>
+                      <span>Order History</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="tab-button" data-tab="wishlist-tab">
+                      <i class="fas fa-heart"></i>
+                      <span>Wishlist</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="tab-button" data-tab="security-tab">
+                      <i class="fas fa-shield-alt"></i>
+                      <span>Security</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button class="tab-button" data-tab="preferences-tab">
+                      <i class="fas fa-cog"></i>
+                      <span>Preferences</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </aside>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+              <!-- Profile Information Tab -->
+              <div id="profile-tab" class="tab-pane active">
+                <div class="tab-header">
+                  <h2>Profile Information</h2>
+                  <p>Manage your personal information and contact details.</p>
+                </div>
+
+                <form id="profile-form" class="profile-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="firstName">First Name</label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        required
+                      />
+                      <span class="error-message" id="firstName-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="lastName">Last Name</label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        required
+                      />
+                      <span class="error-message" id="lastName-error"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      disabled
+                    />
+                    <span class="field-note"
+                      >Email cannot be changed. Contact support if needed.</span
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" />
+                    <span class="error-message" id="phone-error"></span>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="dateOfBirth">Date of Birth</label>
+                      <input type="date" id="dateOfBirth" name="dateOfBirth" />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="gender">Gender</label>
+                      <select id="gender" name="gender">
+                        <option value="">Prefer not to say</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="save-btn">
+                    <i class="fas fa-save"></i>
+                    <span class="btn-text">Save Changes</span>
+                    <i
+                      class="fas fa-spinner fa-spin btn-loading"
+                      style="display: none"
+                    ></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Order History Tab -->
+              <div id="orders-tab" class="tab-pane">
+                <div class="tab-header">
+                  <h2>Order History</h2>
+                  <p>View and track your orders.</p>
+                </div>
+
+                <div id="orders-list" class="orders-list">
+                  <!-- Orders will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Wishlist Tab -->
+              <div id="wishlist-tab" class="tab-pane">
+                <div class="tab-header">
+                  <h2>My Wishlist</h2>
+                  <p>Products you've saved for later.</p>
+                </div>
+
+                <div id="wishlist-grid" class="products-grid">
+                  <!-- Wishlist items will be loaded here -->
+                </div>
+              </div>
+
+              <!-- Security Tab -->
+              <div id="security-tab" class="tab-pane">
+                <div class="tab-header">
+                  <h2>Security Settings</h2>
+                  <p>Manage your password and account security.</p>
+                </div>
+
+                <form id="password-form" class="security-form">
+                  <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        id="currentPassword"
+                        name="currentPassword"
+                        required
+                      />
+                      <button type="button" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </div>
+                    <span
+                      class="error-message"
+                      id="currentPassword-error"
+                    ></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        id="newPassword"
+                        name="newPassword"
+                        required
+                      />
+                      <button type="button" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </div>
+                    <div class="password-requirements">
+                      <p>Password must contain:</p>
+                      <ul>
+                        <li>At least 8 characters</li>
+                        <li>One uppercase letter</li>
+                        <li>One lowercase letter</li>
+                        <li>One number</li>
+                        <li>One special character</li>
+                      </ul>
+                    </div>
+                    <span class="error-message" id="newPassword-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        required
+                      />
+                      <button type="button" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </div>
+                    <span
+                      class="error-message"
+                      id="confirmPassword-error"
+                    ></span>
+                  </div>
+
+                  <button type="submit" class="save-btn">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="btn-text">Update Password</span>
+                    <i
+                      class="fas fa-spinner fa-spin btn-loading"
+                      style="display: none"
+                    ></i>
+                  </button>
+                </form>
+              </div>
+
+              <!-- Preferences Tab -->
+              <div id="preferences-tab" class="tab-pane">
+                <div class="tab-header">
+                  <h2>Preferences</h2>
+                  <p>Customize your shopping experience.</p>
+                </div>
+
+                <form id="preferences-form" class="preferences-form">
+                  <div class="preference-group">
+                    <h3>Communication</h3>
+
+                    <div class="form-group checkbox-group">
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          id="newsletter"
+                          name="newsletter"
+                        />
+                        <span class="checkmark"></span>
+                        <div class="checkbox-content">
+                          <span class="checkbox-title">Newsletter</span>
+                          <span class="checkbox-description"
+                            >Receive updates about new products and special
+                            offers</span
+                          >
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          id="emailNotifications"
+                          name="emailNotifications"
+                        />
+                        <span class="checkmark"></span>
+                        <div class="checkbox-content">
+                          <span class="checkbox-title"
+                            >Email Notifications</span
+                          >
+                          <span class="checkbox-description"
+                            >Get notified about order updates and important
+                            account information</span
+                          >
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                      <label class="checkbox-label">
+                        <input
+                          type="checkbox"
+                          id="smsNotifications"
+                          name="smsNotifications"
+                        />
+                        <span class="checkmark"></span>
+                        <div class="checkbox-content">
+                          <span class="checkbox-title">SMS Notifications</span>
+                          <span class="checkbox-description"
+                            >Receive text messages for delivery updates</span
+                          >
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="save-btn">
+                    <i class="fas fa-save"></i>
+                    <span class="btn-text">Save Preferences</span>
+                    <i
+                      class="fas fa-spinner fa-spin btn-loading"
+                      style="display: none"
+                    ></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>CodeAlpha Store</span>
+              </div>
+              <p>
+                Your trusted online marketplace for quality products at great
+                prices.
+              </p>
+              <div class="social-links">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="Twitter"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" aria-label="YouTube"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/categories">Categories</a></li>
+              <li><a href="/deals">Deals</a></li>
+              <li><a href="/new-arrivals">New Arrivals</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/help">Help Center</a></li>
+              <li><a href="/shipping">Shipping Info</a></li>
+              <li><a href="/returns">Returns</a></li>
+              <li><a href="/size-guide">Size Guide</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>My Account</h3>
+            <ul>
+              <li><a href="/login">Sign In</a></li>
+              <li><a href="/register">Create Account</a></li>
+              <li><a href="/profile">My Profile</a></li>
+              <li><a href="/orders">Order History</a></li>
+              <li><a href="/wishlist">Wishlist</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>&copy; 2025 CodeAlpha E-commerce Store. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
+              <a href="/cookies">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/products.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

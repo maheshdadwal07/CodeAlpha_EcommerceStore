@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - CodeAlpha E-commerce Store</title>
+    <meta
+      name="description"
+      content="Login to your CodeAlpha E-commerce Store account to access your cart, orders, and profile."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/styles.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/">
+              <i class="fas fa-store"></i>
+              <span>CodeAlpha Store</span>
+            </a>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="nav">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/categories">Categories</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Search -->
+            <div class="search-container">
+              <form id="search-form" class="search-form">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search products..."
+                  autocomplete="off"
+                />
+                <button type="submit" class="search-btn">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+              <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <!-- Cart -->
+            <a href="/cart" class="cart-link">
+              <i class="fas fa-shopping-cart"></i>
+              <span id="cart-count" class="cart-count">0</span>
+            </a>
+
+            <!-- User Account -->
+            <div class="user-account">
+              <div class="auth-links">
+                <a href="/register" class="register-link">Register</a>
+                <span class="divider">|</span>
+                <a href="/login" class="login-link active">Login</a>
+              </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav id="mobile-nav" class="mobile-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/categories">Categories</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="mobile-auth">
+            <a href="/register">Register</a>
+            <a href="/login" class="active">Login</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+          <a href="/">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">Login</span>
+        </nav>
+
+        <!-- Login Section -->
+        <section class="auth-section">
+          <div class="auth-container">
+            <div class="auth-card">
+              <div class="auth-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your account to continue shopping</p>
+              </div>
+
+              <form id="login-form" class="auth-form">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      autocomplete="email"
+                    />
+                  </div>
+                  <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                      autocomplete="current-password"
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      id="password-toggle"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                  <span class="error-message" id="password-error"></span>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="remember-me" name="rememberMe" />
+                    <span class="checkmark"></span>
+                    <span class="checkbox-text">Remember me</span>
+                  </label>
+                  <a href="/forgot-password" class="forgot-password-link"
+                    >Forgot Password?</a
+                  >
+                </div>
+
+                <button type="submit" class="auth-submit-btn">
+                  <span class="btn-text">Sign In</span>
+                  <i
+                    class="fas fa-spinner fa-spin btn-loading"
+                    style="display: none"
+                  ></i>
+                </button>
+              </form>
+
+              <div class="auth-footer">
+                <p>
+                  Don't have an account? <a href="/register">Create one here</a>
+                </p>
+              </div>
+
+              <!-- Social Login (Optional) -->
+              <div class="social-auth">
+                <div class="divider">
+                  <span>Or continue with</span>
+                </div>
+                <div class="social-buttons">
+                  <button type="button" class="social-btn google-btn">
+                    <i class="fab fa-google"></i>
+                    <span>Google</span>
+                  </button>
+                  <button type="button" class="social-btn facebook-btn">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>CodeAlpha Store</span>
+              </div>
+              <p>
+                Your trusted online marketplace for quality products at great
+                prices.
+              </p>
+              <div class="social-links">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="Twitter"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" aria-label="YouTube"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/categories">Categories</a></li>
+              <li><a href="/deals">Deals</a></li>
+              <li><a href="/new-arrivals">New Arrivals</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/help">Help Center</a></li>
+              <li><a href="/shipping">Shipping Info</a></li>
+              <li><a href="/returns">Returns</a></li>
+              <li><a href="/size-guide">Size Guide</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>My Account</h3>
+            <ul>
+              <li><a href="/login">Sign In</a></li>
+              <li><a href="/register">Create Account</a></li>
+              <li><a href="/profile">My Profile</a></li>
+              <li><a href="/orders">Order History</a></li>
+              <li><a href="/wishlist">Wishlist</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>&copy; 2025 CodeAlpha E-commerce Store. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
+              <a href="/cookies">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - CodeAlpha E-commerce Store</title>
+    <meta
+      name="description"
+      content="Browse our wide selection of quality products at CodeAlpha E-commerce Store. Find exactly what you're looking for with our advanced filters."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/styles.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo -->
+          <div class="logo">
+            <a href="/">
+              <i class="fas fa-store"></i>
+              <span>CodeAlpha Store</span>
+            </a>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="nav">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products" class="active">Products</a></li>
+              <li><a href="/categories">Categories</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Search -->
+            <div class="search-container">
+              <form id="search-form" class="search-form">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search products..."
+                  autocomplete="off"
+                />
+                <button type="submit" class="search-btn">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+              <div id="search-suggestions" class="search-suggestions"></div>
+            </div>
+
+            <!-- Cart -->
+            <a href="/cart" class="cart-link">
+              <i class="fas fa-shopping-cart"></i>
+              <span id="cart-count" class="cart-count">0</span>
+            </a>
+
+            <!-- User Account -->
+            <div class="user-account">
+              <div class="auth-links" id="auth-links">
+                <a href="/register" class="register-link">Register</a>
+                <span class="divider">|</span>
+                <a href="/login" class="login-link">Login</a>
+              </div>
+              <div class="user-menu" id="user-menu" style="display: none">
+                <button class="user-menu-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span id="user-name"></span>
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="user-dropdown">
+                  <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+                  <a href="/orders"><i class="fas fa-box"></i> Orders</a>
+                  <a href="/wishlist"><i class="fas fa-heart"></i> Wishlist</a>
+                  <button id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav id="mobile-nav" class="mobile-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/products" class="active">Products</a></li>
+          <li><a href="/categories">Categories</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li class="mobile-auth" id="mobile-auth">
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+          <a href="/">Home</a>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current">Products</span>
+        </nav>
+
+        <!-- Search Results Info -->
+        <div id="search-results-info" class="search-results-info"></div>
+
+        <!-- Products Section -->
+        <section class="products-section">
+          <div class="products-container">
+            <!-- Sidebar Filters -->
+            <aside class="products-sidebar">
+              <div class="filters-container">
+                <h3>Filters</h3>
+
+                <!-- Category Filter -->
+                <div class="filter-group">
+                  <h4>Categories</h4>
+                  <div id="category-filters" class="filter-options">
+                    <label class="filter-option">
+                      <input
+                        type="checkbox"
+                        name="category"
+                        value="electronics"
+                      />
+                      <span>Electronics</span>
+                    </label>
+                    <label class="filter-option">
+                      <input type="checkbox" name="category" value="clothing" />
+                      <span>Clothing</span>
+                    </label>
+                    <label class="filter-option">
+                      <input type="checkbox" name="category" value="home" />
+                      <span>Home & Garden</span>
+                    </label>
+                    <label class="filter-option">
+                      <input type="checkbox" name="category" value="sports" />
+                      <span>Sports & Outdoors</span>
+                    </label>
+                    <label class="filter-option">
+                      <input type="checkbox" name="category" value="books" />
+                      <span>Books</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Price Range Filter -->
+                <div class="filter-group">
+                  <h4>Price Range</h4>
+                  <div class="price-range">
+                    <div class="price-inputs">
+                      <input
+                        type="number"
+                        id="min-price"
+                        placeholder="Min"
+                        min="0"
+                      />
+                      <span>to</span>
+                      <input
+                        type="number"
+                        id="max-price"
+                        placeholder="Max"
+                        min="0"
+                      />
+                    </div>
+                    <div class="price-presets">
+                      <button
+                        type="button"
+                        class="price-preset"
+                        data-min="0"
+                        data-max="25"
+                      >
+                        Under $25
+                      </button>
+                      <button
+                        type="button"
+                        class="price-preset"
+                        data-min="25"
+                        data-max="50"
+                      >
+                        $25 - $50
+                      </button>
+                      <button
+                        type="button"
+                        class="price-preset"
+                        data-min="50"
+                        data-max="100"
+                      >
+                        $50 - $100
+                      </button>
+                      <button
+                        type="button"
+                        class="price-preset"
+                        data-min="100"
+                        data-max=""
+                      >
+                        $100+
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Rating Filter -->
+                <div class="filter-group">
+                  <h4>Customer Rating</h4>
+                  <div class="rating-filters">
+                    <label class="filter-option">
+                      <input type="radio" name="rating" value="4" />
+                      <span class="rating-display">
+                        <div class="stars">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
+                        </div>
+                        <span>4 stars & up</span>
+                      </span>
+                    </label>
+                    <label class="filter-option">
+                      <input type="radio" name="rating" value="3" />
+                      <span class="rating-display">
+                        <div class="stars">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                        </div>
+                        <span>3 stars & up</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Availability Filter -->
+                <div class="filter-group">
+                  <h4>Availability</h4>
+                  <div class="filter-options">
+                    <label class="filter-option">
+                      <input
+                        type="checkbox"
+                        name="availability"
+                        value="in-stock"
+                      />
+                      <span>In Stock</span>
+                    </label>
+                    <label class="filter-option">
+                      <input
+                        type="checkbox"
+                        name="availability"
+                        value="on-sale"
+                      />
+                      <span>On Sale</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Clear Filters -->
+                <button
+                  type="button"
+                  id="clear-filters"
+                  class="clear-filters-btn"
+                >
+                  <i class="fas fa-times"></i>
+                  Clear All Filters
+                </button>
+              </div>
+            </aside>
+
+            <!-- Products Content -->
+            <div class="products-content">
+              <!-- Toolbar -->
+              <div class="products-toolbar">
+                <div class="toolbar-left">
+                  <button id="filters-toggle" class="filters-toggle">
+                    <i class="fas fa-filter"></i>
+                    Filters
+                  </button>
+                  <div class="results-count">
+                    <span id="results-count">Loading products...</span>
+                  </div>
+                </div>
+
+                <div class="toolbar-right">
+                  <div class="view-options">
+                    <button class="view-option active" data-view="grid">
+                      <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-option" data-view="list">
+                      <i class="fas fa-list"></i>
+                    </button>
+                  </div>
+
+                  <div class="sort-dropdown">
+                    <select id="sort-select">
+                      <option value="newest">Newest First</option>
+                      <option value="oldest">Oldest First</option>
+                      <option value="price-low">Price: Low to High</option>
+                      <option value="price-high">Price: High to Low</option>
+                      <option value="rating">Highest Rated</option>
+                      <option value="popular">Most Popular</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Products Grid -->
+              <div id="products-grid" class="products-grid">
+                <!-- Products will be loaded here -->
+              </div>
+
+              <!-- Load More Button -->
+              <div class="load-more-container">
+                <button
+                  id="load-more-btn"
+                  class="load-more-btn"
+                  style="display: none"
+                >
+                  <span class="btn-text">Load More Products</span>
+                  <i
+                    class="fas fa-spinner fa-spin btn-loading"
+                    style="display: none"
+                  ></i>
+                </button>
+              </div>
+
+              <!-- Pagination -->
+              <div id="pagination" class="pagination" style="display: none">
+                <button class="pagination-btn" id="prev-page" disabled>
+                  <i class="fas fa-chevron-left"></i>
+                  Previous
+                </button>
+                <div class="pagination-info">
+                  <span id="page-info">Page 1 of 1</span>
+                </div>
+                <button class="pagination-btn" id="next-page" disabled>
+                  Next
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>CodeAlpha Store</span>
+              </div>
+              <p>
+                Your trusted online marketplace for quality products at great
+                prices.
+              </p>
+              <div class="social-links">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="Twitter"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a href="#" aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" aria-label="YouTube"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/categories">Categories</a></li>
+              <li><a href="/deals">Deals</a></li>
+              <li><a href="/new-arrivals">New Arrivals</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/help">Help Center</a></li>
+              <li><a href="/shipping">Shipping Info</a></li>
+              <li><a href="/returns">Returns</a></li>
+              <li><a href="/size-guide">Size Guide</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3>My Account</h3>
+            <ul>
+              <li><a href="/login">Sign In</a></li>
+              <li><a href="/register">Create Account</a></li>
+              <li><a href="/profile">My Profile</a></li>
+              <li><a href="/orders">Order History</a></li>
+              <li><a href="/wishlist">Wishlist</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>&copy; 2025 CodeAlpha E-commerce Store. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
+              <a href="/cookies">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/js/utils.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+    <script src="/js/products.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
