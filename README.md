@@ -6,21 +6,47 @@
   <img src="https://img.shields.io/badge/MongoDB-4.4%2B-green" alt="MongoDB">
   <img src="https://img.shields.io/badge/Express-4.18.2-lightgrey" alt="Express">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome">
+  <img src="https://img.shields.io/badge/CodeAlpha-Internship-orange" alt="CodeAlpha">
 </p>
 
 <p align="center">
   A full-stack e-commerce web application built with **Node.js**, **Express.js**, **MongoDB**, and **Vanilla JavaScript**. 
   <br>
   Features a modern, responsive UI with gradient designs, smooth animations, and complete shopping functionality.
+  <br>
+  <strong>🎓 CodeAlpha Web Development Internship Project</strong>
 </p>
 
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-quick-start">Quick Start</a> •
-  <a href="#-api-endpoints">API</a> •
+  <a href="#-deployment">Deployment</a> •
   <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-license">License</a>
+  <a href="#-demo">Demo</a>
 </p>
+
+---
+
+## 🌐 Live Demo & Deployment
+
+> **⚠️ Important:** This is a full-stack application with Node.js backend. GitHub Pages only hosts static files.
+> For full functionality, deploy on platforms like **Render**, **Railway**, or **Cyclic**.
+
+### 📖 Deployment Options:
+- 📘 [Complete Deployment Guide](./DEPLOYMENT_GUIDE.md) - Render, Railway, Cyclic
+- 🎬 [Video Demo](#) - Coming soon
+- 📸 [Screenshots](#) - See project in action
+
+### 🔑 Demo Credentials:
+```
+Admin Account:
+Email: admin@shopease.com
+Password: admin123
+
+Customer Account:
+Email: customer@shopease.com
+Password: customer123
+```
 
 ---
 

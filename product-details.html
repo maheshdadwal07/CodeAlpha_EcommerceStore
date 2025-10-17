@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details - ShopEase</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <h1>🛍️ ShopEase</h1>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/products.html" class="nav-link">Products</a>
+          <a href="/cart.html" class="nav-link">
+            Cart <span id="cartCount" class="badge">0</span>
+          </a>
+          <a href="/orders.html" class="nav-link">📦 Orders</a>
+          <a href="#" id="logoutBtn" class="nav-link">🚪 Logout</a>
+          <a href="/login.html" id="loginLink" class="btn-primary">Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Product Details -->
+    <section class="product-details-section">
+      <div class="container">
+        <div id="productDetails" class="product-details">
+          <div class="loading">Loading product details...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2024 ShopEase. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/product-details.js"></script>
+  </body>
+</html>
