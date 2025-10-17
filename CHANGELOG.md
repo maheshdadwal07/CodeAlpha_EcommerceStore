@@ -170,10 +170,7 @@ npm install
 
 ## Support
 
-For issues or feature requests, please visit:
-
-- GitHub Issues: [Link to issues]
-- Email: support@shopease.com
+For issues or feature requests, please visit the GitHub Issues page.
 
 ---
 

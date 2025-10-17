@@ -267,10 +267,7 @@ npm run seed
 
 🔗 **Live Site:** https://shopease-ecommerce.onrender.com
 
-**Demo Credentials:**
-
-- Email: admin@shopease.com
-- Password: admin123
+Create your own admin account after deployment to test the application.
 ```
 
 ---

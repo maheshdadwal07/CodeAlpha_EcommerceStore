@@ -33,20 +33,10 @@
 > For full functionality, deploy on platforms like **Render**, **Railway**, or **Cyclic**.
 
 ### 📖 Deployment Options:
+
 - 📘 [Complete Deployment Guide](./DEPLOYMENT_GUIDE.md) - Render, Railway, Cyclic
 - 🎬 [Video Demo](#) - Coming soon
 - 📸 [Screenshots](#) - See project in action
-
-### 🔑 Demo Credentials:
-```
-Admin Account:
-Email: admin@shopease.com
-Password: admin123
-
-Customer Account:
-Email: customer@shopease.com
-Password: customer123
-```
 
 ---
 
@@ -171,21 +161,7 @@ This will create:
 
 **Demo Login Credentials:**
 
-**Admin User:**
-
-```
-Email: admin@shopease.com
-Password: admin123
-```
-
-**Customer User:**
-
-```
-Email: customer@shopease.com
-Password: customer123
-```
-
-### Step 5: Start the Server
+### Step 4: Run the Application
 
 ```powershell
 npm start
@@ -406,15 +382,7 @@ rm -rf node_modules package-lock.json
 npm install
 ```
 
-## 📞 Support & Contact
-
-For issues or questions:
-
-- 📧 Email: maheshdadwal07@gmail.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/shopease/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/shopease/discussions)
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **CodeAlpha Internship** - For the opportunity
 - **Unsplash** - For product images
