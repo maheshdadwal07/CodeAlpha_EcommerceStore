@@ -222,8 +222,8 @@ Build Command: npm install
 Start Command: npm start
 
 # 6. Add Environment Variables:
-MONGODB_URI = mongodb+srv://username:password@cluster.mongodb.net/shopease
-JWT_SECRET = your_super_secret_jwt_key_12345
+MONGODB_URI = <your_mongodb_atlas_connection_string_here>
+JWT_SECRET = <generate_a_strong_random_secret_key>
 NODE_ENV = production
 PORT = 5000
 
