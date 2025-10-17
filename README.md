@@ -384,7 +384,7 @@ npm install
 
 For issues or questions:
 
-- 📧 Email: your.email@example.com
+- 📧 Email: maheshdadwal07@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/shopease/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/shopease/discussions)
 
