@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopEase - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <h1>🛍️ ShopEase</h1>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-search">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+          />
+          <button id="searchBtn">🔍</button>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="/" class="nav-link active">Home</a>
+          <a href="/products.html" class="nav-link">Products</a>
+          <a href="/cart.html" class="nav-link">
+            Cart <span id="cartCount" class="badge">0</span>
+          </a>
+          <a href="/orders.html" class="nav-link">📦 Orders</a>
+          <a href="#" id="logoutBtn" class="nav-link">🚪 Logout</a>
+          <a href="/login.html" id="loginLink" class="btn-primary">Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to ShopEase</h1>
+          <p class="hero-subtitle">
+            Discover amazing products at unbeatable prices
+          </p>
+          <a href="/products.html" class="btn-hero">Shop Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+      <div class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid" id="categoryGrid">
+          <div class="category-card" data-category="Electronics">
+            <div class="category-icon">📱</div>
+            <h3>Electronics</h3>
+          </div>
+          <div class="category-card" data-category="Clothing">
+            <div class="category-icon">👕</div>
+            <h3>Clothing</h3>
+          </div>
+          <div class="category-card" data-category="Books">
+            <div class="category-icon">📚</div>
+            <h3>Books</h3>
+          </div>
+          <div class="category-card" data-category="Home & Kitchen">
+            <div class="category-icon">🏠</div>
+            <h3>Home & Kitchen</h3>
+          </div>
+          <div class="category-card" data-category="Sports">
+            <div class="category-icon">⚽</div>
+            <h3>Sports</h3>
+          </div>
+          <div class="category-card" data-category="Beauty">
+            <div class="category-icon">💄</div>
+            <h3>Beauty</h3>
+          </div>
+          <div class="category-card" data-category="Toys">
+            <div class="category-icon">🧸</div>
+            <h3>Toys</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+      <div class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div id="featuredGrid" class="product-grid">
+          <!-- Products will be loaded here -->
+          <div class="loading">Loading amazing products...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <h3>Free Shipping</h3>
+            <p>On orders over ₹500</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Payment</h3>
+            <p>100% secure transactions</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">↩️</div>
+            <h3>Easy Returns</h3>
+            <p>30-day return policy</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>24/7 Support</h3>
+            <p>Dedicated customer service</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>🛍️ ShopEase</h3>
+            <p>
+              Your ultimate shopping destination for quality products at great
+              prices.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/products.html">Products</a></li>
+              <li><a href="/cart.html">Cart</a></li>
+              <li><a href="/orders.html">Orders</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Customer Service</h4>
+            <ul>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Shipping Info</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Connect With Us</h4>
+            <div class="social-links">
+              <a href="#">Facebook</a>
+              <a href="#">Twitter</a>
+              <a href="#">Instagram</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 ShopEase. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
+</html>

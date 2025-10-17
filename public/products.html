@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - ShopEase</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <h1>🛍️ ShopEase</h1>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-search">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+          />
+          <button id="searchBtn">🔍</button>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/products.html" class="nav-link active">Products</a>
+          <a href="/cart.html" class="nav-link">
+            Cart <span id="cartCount" class="badge">0</span>
+          </a>
+          <a href="/orders.html" class="nav-link">📦 Orders</a>
+          <a href="#" id="logoutBtn" class="nav-link">🚪 Logout</a>
+          <a href="/login.html" id="loginLink" class="btn-primary">Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Filters & Products -->
+    <section class="products-section">
+      <div class="container">
+        <div class="filters-bar">
+          <div class="filter-group">
+            <label for="categoryFilter">Category:</label>
+            <select id="categoryFilter">
+              <option value="All">All Categories</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Books">Books</option>
+              <option value="Home & Kitchen">Home & Kitchen</option>
+              <option value="Sports">Sports</option>
+              <option value="Beauty">Beauty</option>
+              <option value="Toys">Toys</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="sortFilter">Sort By:</label>
+            <select id="sortFilter">
+              <option value="newest">Newest</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="productsGrid" class="product-grid">
+          <div class="loading">Loading products...</div>
+        </div>
+
+        <div id="pagination" class="pagination"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>&copy; 2024 ShopEase. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/utils.js"></script>
+    <script src="/js/products.js"></script>
+  </body>
+</html>
